@@ -301,7 +301,7 @@ Notifications                </h6>
           <div class="form-group">
             <input type="text" name="numtel" maxlength="8" pattern="[0-9]{8,}"  required oninvalid="setCustomValidity('le numero de telephone doit contenir  8 chiffres')" oninput="setCustomValidity('')"  class="form-control" placeholder="Numero de télephone" autofocus>
           </div>
-          <input type="submit" name="ajoutchauf" class="btn btn-success btn-block" value="Sauvegarder" />
+          <input type="submit" name="ajoutchauf" class="btn btn-success btn-block" value="Sauvegarder" />  
         </form>
       </div>
     </div>
@@ -350,7 +350,10 @@ Notifications                </h6>
           <?php } ?>
         </tbody>
       </table>
-    </div>
+      <div class="row">
+    <form method="post" action="pdf.php">  
+<input type="submit" name="generate_pdf" class="btn btn-success btn-block" value="Générer un PDF" />  
+  </div>
   </div>
 </main>
       <!-- End of Main Content -->
