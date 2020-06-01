@@ -17,7 +17,7 @@
     <!-- Css Styles -->
     <link rel="stylesheet" href="js/jquery-ui.css" type="text/css">
     <link rel="stylesheet" href="js/jquery.datetimepicker.min.css" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
@@ -81,8 +81,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestions:</h6>
             <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
-            <a class="collapse-item active" href="gestionreservation.php">Consulter les commandes</a>
-            <a class="collapse-item" href="crudnewsletter.php">Consulter les abonnés</a>
+            <a class="collapse-item" href="gestionreservation.php">Consulter les commandes</a>
+            <a class="collapse-item active" href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item" href="crudchauffeur.php">Gestion des chauffeurs</a>
             <a class="collapse-item" href="client.php">Gestion des clients</a>
             <a class="collapse-item" href="gestionconge.php">Gestion des congés</a>
@@ -353,12 +353,12 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Les commandes</h1>
+          <h1 class="h3 mb-4 text-gray-800">Les abonnés</h1>
 
          <center>
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">
           <div class="input-group">
-            <input name="acin" type="text" class="form-control bg-light border-0 small" placeholder="Recherche par ID client" aria-label="Search" aria-describedby="basic-addon2"/>
+            <input name="acin" type="text" class="form-control bg-light border-0 small" placeholder="Recherche par mail abonné" aria-label="Search" aria-describedby="basic-addon2"/>
               <div class="input-group-append">
 
 <button name="but8" class="btn btn-primary"  type="submit">
@@ -374,18 +374,7 @@
 
       </div>
       <main class="container p-4">
-  <div class="row">
-    <div class="col-md-4">
-      <!-- MESSAGES -->
-
-      <?php if (isset($_SESSION['message'])) { ?>
-      <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
-        <?= $_SESSION['message']?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <?php session_unset(); } ?>
+ 
 
       <!-- ADD TASK FORM -->
       
@@ -393,17 +382,10 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>ID Réservation</th>
-      <th>ID Client</th>
-      <th>ID Voiture</th>
-      <th>Date départ</th>
-      <th>Date retour</th>
-      <th>Livraison</th>
-      <th>Chauffeur</th>
-      <th>Etat</th>
-      <th>Prix</th>
-      <th>Mode de paiement</th>
-      <th>Date d'achat</th>
+      <th>ID Abonné</th>
+      <th>Email</th>
+      <th>Date de l'abonnement</th>
+
       
     </tr>
   </thead>
@@ -412,54 +394,32 @@
     <?php
   if (isset($_GET['but8'])) 
   {   
-   if (empty($_GET['acin'])){
-   
-      $query = "SELECT * FROM commande ORDER BY id asc" ;
-   }
-   else {
-   $acin= $_GET['acin'];
-          $query = "SELECT * FROM commande where client=$acin ";}}
-else {
-
-     
-    $query = "SELECT * FROM commande ORDER BY id asc" ;}
+    if (empty($_GET['acin']))
+    {
+      $query = "SELECT * FROM newsletters ORDER BY id asc" ;
+    }
+    else 
+    {
+      $acin= $_GET['acin'];
+      $query = "SELECT * FROM newsletters where email=$acin ";
+    }
+  }
+  else 
+  {
+    $query = "SELECT * FROM newsletters ORDER BY id asc" ;}
     $result_tasks = mysqli_query($conn, $query);    
-
-    while($row = mysqli_fetch_assoc($result_tasks)) { $voiture=$row['voiture']?>
+    while($row = mysqli_fetch_assoc($result_tasks)) 
+    { ?>
     <tr>
     <td><?php echo $row['id']; ?></td>
-      <td><?php echo $row['client']; ?></td>
-
-        <?php
-
-             include '../client/config.php';
-
-             $sel = "SELECT * FROM voiture where id = '$voiture'  ";
-             $rs = $conn->query($sel);
-             while($rws = $rs->fetch_assoc()){
-        ?>
-      <td>  <?php echo $row['voiture']; ?> <br>
-        <img src="../img/products/<?php echo $rws['pic'];?>" alt=""> 
-        <?php echo $rws['marque']; echo ' '.$rws['modele']; ?>
-      </td> <?php }?>
-      <td><?php echo $row['depart']; ?></td>
-      <td><?php echo $row['retour']; ?></td>
-      <td><?php echo $row['livraison']; ?></td>
-      <td><?php echo $row['chauffeur']; ?></td>
-      <td><?php 
-      $date1 = date('yy/m/d h:i:s');
-       $date2 = $row['retour'];
-       $timestamp1 = strtotime($date1); 
-        $timestamp2 = strtotime($date2);
-        if ($timestamp1 > $timestamp2)
-        echo $row['etat']='effectué';
-      else 
-        echo $row['etat'];
-            ?>
+      <td><?php echo $row['email']; ?></td>
+      <td><?php echo $row['date']; ?></td>
+                  <td>
+              <a href="suprabo.php?id=<?php echo $row['id']?>" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+              </a>
+            </td>
       </td>
-      <td><?php echo $row['prix']; ?></td> 
-      <td><?php echo $row['paiement']; ?></td>
-      <td><?php echo $row['date_achat']; ?></td> 
     </td>
      
     </tr>
@@ -468,6 +428,8 @@ else {
         </table>
         <br>
     </div>
+    <form style="max-width: 250px; margin-right: auto; margin-left: auto;" method="post" action="newsletter.php">  
+<input type="submit" name="envois_mail" class="btn btn-success btn-block" value="Envois Mail" /> 
   </div>
 </main>
 

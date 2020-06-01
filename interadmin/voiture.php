@@ -59,6 +59,7 @@ include("db.php");
           <h6 class="collapse-header">Gestions:</h6>
             <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
             <a class="collapse-item" href="gestionreservation.php">Consulter les commandes</a>
+            <a class="collapse-item " href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item" href="crudchauffeur.php">Gestion des chauffeurs</a>
             <a class="collapse-item" href="client.php">Gestion des clients</a>
             <a class="collapse-item" href="gestionconge.php">Gestion des congés</a>

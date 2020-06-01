@@ -5,13 +5,14 @@ include('db.php');
   $prenom = $_POST['prenom'];
   $cin = $_POST['cin'];
   $numtel = $_POST['numtel'];
-  $disponibilite = "dispo";
+  $disponibilite = date('Y-m-d H:i:s');
+  $retour = date('Y-m-d H:i:s');
 
 if ( !empty($_POST['ajoutchauf']) ) 
 {
     if ( empty(!$_POST['nom']) || empty(!$_POST['prenom']) || empty(!$_POST['cin']) || empty(!$_POST['numtel'])) 
     {
-         $query = "INSERT INTO chauffeur(nom, prenom,cin,numtel,disponibilite) VALUES ('$nom', '$prenom','$cin','$numtel','$disponibilite')";
+         $query = "INSERT INTO chauffeur(nom, prenom,cin,numtel,disponibilite,retour) VALUES ('$nom', '$prenom','$cin','$numtel','$disponibilite','$retour')";
           $result = mysqli_query($conn, $query);
           if(!$result) 
           {

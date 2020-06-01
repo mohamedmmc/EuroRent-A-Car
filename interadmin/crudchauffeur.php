@@ -54,6 +54,7 @@
             <h6 class="collapse-header">Gestions:</h6>
             <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
             <a class="collapse-item " href="gestionreservation.php">Consulter les commandes</a>
+            <a class="collapse-item " href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item active" href="crudchauffeur.php">Gestion des chauffeurs</a>
             <a class="collapse-item" href="client.php">Gestion des clients</a>
             <a class="collapse-item" href="gestionconge.php">Gestion des congés</a>
@@ -313,7 +314,8 @@ Notifications                </h6>
             <th>Prenom</th>
             <th>CIN</th>
             <th>Numero de télephone</th>
-            <th>Disponiblité</th>
+            <th>Depart</th>
+            <th>Retour</th>
           </tr>
         </thead>
         <tbody>
@@ -338,6 +340,7 @@ Notifications                </h6>
             <td><?php echo $row['cin']; ?></td>
             <td><?php echo $row['numtel']; ?></td>
             <td><?php echo $row['disponibilite']; ?></td>
+            <td><?php echo $row['retour']; ?></td>
             <td>
               <a href="modifchauf.php?id=<?php echo $row['id']?>" class="btn btn-secondary">
                 <i class="fas fa-marker"></i>
@@ -350,11 +353,11 @@ Notifications                </h6>
           <?php } ?>
         </tbody>
       </table>
-      <div class="row">
     <form method="post" action="pdf.php">  
-<input type="submit" name="generate_pdf" class="btn btn-success btn-block" value="Générer un PDF" />  
+<input style="margin-left: auto; margin-right: auto;" type="submit" name="generate_pdf" class="btn btn-success btn-block" value="Générer un PDF" /> 
   </div>
-  </div>
+</form>
+
 </main>
       <!-- End of Main Content -->
 

@@ -552,6 +552,7 @@ pre code {
 }
 
 .container {
+  background-color: blue;
   width: 100%;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
@@ -9516,7 +9517,7 @@ a.text-dark:hover, a.text-dark:focus {
     min-width: 992px !important;
   }
   .container {
-    min-width: 992px !important;
+    /*min-width: 992px !important;*/
   }
   .navbar {
     display: none;
