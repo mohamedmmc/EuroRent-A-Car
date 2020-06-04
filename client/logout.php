@@ -9,7 +9,7 @@ session_unset ();
 session_destroy ();
 
 // On redirige le visiteur vers la page d'accueil
-header ('location: login.html');
+header ('location: login.php');
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

@@ -59,7 +59,7 @@
         }
         echo "<script type = \"text/javascript\">
                     alert(\"Newletters envoyé avec succés\");
-                    window.location = (\"crudchauffeur.php\")
+                    window.location = (\"crudnewsletter.php\")
                     </script>";
     }
                     

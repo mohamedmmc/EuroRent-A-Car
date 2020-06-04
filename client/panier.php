@@ -64,7 +64,7 @@ include 'config.php';?>
                             <ul class="sub-menu">
                                 <li><a href="gestion_commande.php">Vos commandes</a></li>
                                 <li><a href="pagemodifier_user.php">Profil</a></li>
-                                <li><a href="../accueil.html">Se déconnecter</a></li>
+                                <li><a href="../accueil.php">Se déconnecter</a></li>
                             </ul>
                         </li>
                      </ul> 

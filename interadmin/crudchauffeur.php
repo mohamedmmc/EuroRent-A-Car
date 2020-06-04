@@ -328,11 +328,16 @@ Notifications                </h6>
           }
           else{
             $acin=$_GET['acin'];
-            $query = "SELECT * FROM chauffeur where cin=$acin";}}
+            $query = "SELECT * FROM chauffeur where cin like '$acin%'";}}
             else {
               $query = "SELECT * FROM chauffeur order by cin asc";}
           $result_tasks = mysqli_query($conn, $query);    
-
+              if (mysqli_num_rows($result_tasks) == 0)
+    {
+        echo "<script type = \"text/javascript\">
+                     alert(\"Aucun chauffeur n'est inscrit\");
+                       </script>";
+    } 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <tr>
             <td><?php echo $row['nom']; ?></td>

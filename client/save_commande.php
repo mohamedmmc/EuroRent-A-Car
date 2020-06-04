@@ -7,7 +7,7 @@ if (isset($_POST['save_commande'])) {
 
   $client = $_SESSION['id'];
   $paiement = $_POST['paiement'];
-  $query = "INSERT INTO commande(id,client,voiture,depart,retour,livraison,chauffeur,etat,prix,paiement)  SELECT id,client,voiture,depart,retour,livraison,chauffeur,etat,prix,'$paiement' as paiement FROM reservation WHERE client = $client";
+  $query = "INSERT INTO commande(id,client,voiture,depart,retour,livraison,chauffeur,etat,prix,paiement,idc)  SELECT id,client,voiture,depart,retour,livraison,chauffeur,etat,prix,'$paiement',idc as paiement FROM reservation WHERE client = $client";
 
   $result = mysqli_query($conn, $query);  
      $query1 = "DELETE FROM reservation WHERE client = $client";

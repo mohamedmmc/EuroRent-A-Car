@@ -16,6 +16,7 @@ $output .= '<tr>
 <td>'.$row["cin"].'</td>  
 <td>'.$row["numtel"].'</td>  
 <td>'.$row["disponibilite"].'</td>  
+<td>'.$row["retour"].'</td> 
 </tr>  
 ';  
 }  
@@ -42,7 +43,8 @@ $content .= '
 <th width="15%">Prenom</th>  
 <th width="15%">CIN</th> 
 <th width="15%">Numéro de téléphone</th>
-<th width="15%">Disponibilité</th>   
+<th width="15%">Départ</th>
+<th width="15%">Retour</th>   
 </tr>  
 ';  
 $content .= fetch_data();  

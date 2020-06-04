@@ -1,8 +1,3 @@
-<?php
-session_start();
-?>
-
-
 <!DOCTYPE html>
 <html lang="zxx">
 <style>
@@ -24,18 +19,136 @@ session_start();
 
     <!-- Css Styles -->
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../css/sb-admin-2.css">
+    <link rel="stylesheet" type="text/css" href="css/sb-admin-2.css">
 
 </head>
 
 <body>
+
+    <div id="oModal" class="oModal">
+     <section>
+<body>
+
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+              <a href="#fermer" title="Fermer la fenêtre" class="droite">X</a>
+
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+
+                    <h1 class="h4 text-gray-900 mb-4">Bienvenue!</h1>
+                  </div>
+                  <form class="user" id="form1" name="form1" method="POST" action="connexion.php">
+                    <div class="form-group">
+                      <input  type="email" id="login" name="login" id="login" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Votre adresse mail">
+                    </div>
+                    <div class="form-group">
+                      <input type="password" id="pwd" name="pwd" class="form-control form-control-user" id="exampleInputPassword" placeholder="Mot de passe">
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <input type="checkbox" class="custom-control-input" id="customCheck">
+                        <label class="custom-control-label" for="customCheck">Se souvenir</label>
+                        <div class="form-group">
+                            <a class="small" href="#oModal2">Pas de compte? Creer un compte!</a>
+                          </div>
+                      </div>
+                    </div>
+                    <input type="submit" name="button" id="button"  value="Valider" class="btn btn-primary btn-user btn-block"/>
+                    
+                 
+                  </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+     </section>
+  </div>
+</div>
+<div id="oModal2" class="oModal2">
+     <section>
+
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <a href="#fermer" title="Fermer la fenêtre" class="droite">X</a>
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Créer un nouveau compte!</h1>
+              </div>
+              <form class="user" action="sauvgarder_client.php" method="POST">
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="nom" minlength="1" required oninvalid="setCustomValidity('Le nom doit etre non vide')" oninput="setCustomValidity('')" class="form-control form-control-user" placeholder="Nom" autofocus>
+                  </div>
+                  <div class="col-sm-6">
+                     <input type="text" name="prenom" minlength="1" required oninvalid="setCustomValidity('Le Prenom doit etre non vide')" oninput="setCustomValidity('')" class="form-control form-control-user" placeholder="Prenom" autofocus>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="cin" class="form-control form-control-user" placeholder="cin"   maxlength="8" pattern="[0-9]{8,}"  required oninvalid="setCustomValidity('le cin doit contenir 8 chiffres')" oninput="setCustomValidity('')" autofocus>
+                  </div>
+                  <div class="col-sm-6">
+                    <input type="text" name="numdetel" class="form-control form-control-user" maxlength="8" pattern="[0-9]{8,}"  required oninvalid="setCustomValidity('le numero de telephone doit contenir  8 chiffres')" oninput="setCustomValidity('')" placeholder="numero de téléphone" autofocus>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="email" required oninvalid="setCustomValidity('tapez une adresse e-mail valide')" oninput="setCustomValidity('')" name="email" class="form-control form-control-user" placeholder="Adresse email" >
+                </div>
+                <div class="form-group">
+                 <input type="text" name="adresse" minlength="1" required oninvalid="setCustomValidity('adresse doit etre non vide')" oninput="setCustomValidity('')" class="form-control form-control-user" placeholder="Adresse" autofocus>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="password" name="mdp"  class="form-control form-control-user" placeholder="Mot de passe" minlength="6" required oninvalid="setCustomValidity('le mot de passe doit contenir au moins 6 caractères')" oninput="setCustomValidity('')"  autofocus>
+                  </div>
+                  <div class="col-sm-6">
+                     <input type="password" name="mdp"  class="form-control form-control-user" placeholder="Répeter Mot de passe" minlength="6" required oninvalid="setCustomValidity('le mot de passe doit contenir au moins 6 caractères')" oninput="setCustomValidity('')"  autofocus>
+                  </div>
+                </div>
+                <input type="submit" name="sauvgarder_client" class="btn btn-primary btn-user btn-block" value="Sauvegarder">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+     </section>
+  </div>
+</div>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -57,34 +170,18 @@ session_start();
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="./accueil.php"><img src="../img/logo.png" alt=""></a>
+                    <a href="./accueil.php"><img src="img/logo.png" alt=""></a>
                 </div>
-                                <div class="header-right">
-                   
-                     <nav class="main-menu mobile-menu">
-                    <ul>
-                         <a href="gestion_panier.php">
-                        <img src="../img/icons/bag.png" alt="">
-                    </a>
-                    <li><a> <img src="../img/icons/option.png" alt=""></a>
-                            <ul class="sub-menu">
-                                <li><a href="gestion_commande.php">Vos commandes</a></li>
-                                <li><a href="pagemodifier_user.php">Profil</a></li>
-                                <li><a href="../accueil.php">Se déconnecter</a></li>
-                            </ul>
-                        </li>
-                     </ul> 
-                     </nav>  
-                </div>
-                <div class="user-access">
-                   <a> Bienvenue <u> <?php echo $_SESSION['nom']; ?></u> </a>
+                                <div class="user-access">
+                    <a href="#oModal2">Creer un compte</a>
+                    <a href="#oModal" class="in">Se connecter</a>
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a href="./accueil.php">Accueil</a></li>
                         <li><a href="./reservation.php">Réservation</a>
-                        <li><a href="./services.php">Services</a></li>
-                        <li><a href="./contact.php">Contact</a></li>
+                        <li><a href="./services.html">Services</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -96,19 +193,19 @@ session_start();
             <div class="row">
                 <div class="col-md-4">
                     <div class="header-item">
-                        <img src="../img/icons/delivery.png" alt="">
+                        <img src="img/icons/delivery.png" alt="">
                         <p>Livraison gratuite jusqu'à l'aéroport</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-left text-lg-center">
                     <div class="header-item">
-                        <img src="../img/icons/voucher.png" alt="">
+                        <img src="img/icons/voucher.png" alt="">
                         <p>Assistance disponible 24/7</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-left text-xl-right">
                     <div class="header-item">
-                    <img src="../img/icons/sales.png" alt="">
+                    <img src="img/icons/sales.png" alt="">
                     <p>10% off en utilisant le code EuroPromo</p>
                 </div>
                 </div>
@@ -121,35 +218,35 @@ session_start();
     <!-- Hero Slider Begin -->
     <section class="hero-slider">
         <div class="hero-items owl-carousel">
-            <div class="single-slider-item set-bg" data-setbg="../img/slider-1.png">
+            <div class="single-slider-item set-bg" data-setbg="img/slider-1.png">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                         	<h2>Notre sélection</h2>
                             <h1>2020</h1>
-                            <a href="reservation.php" class="primary-btn">VOIR PLUS</a>
+                            <a href="reservation.html" class="primary-btn">VOIR PLUS</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single-slider-item set-bg" data-setbg="../img/slider-2.png">
+            <div class="single-slider-item set-bg" data-setbg="img/slider-2.png">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                         	<h2>Notre sélection</h2>
                             <h1>2020</h1>
-                            <a href="reservation.php" class="primary-btn">VOIR PLUS</a>
+                            <a href="reservation.html" class="primary-btn">VOIR PLUS</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single-slider-item set-bg" data-setbg="../img/slider-3.png">
+            <div class="single-slider-item set-bg" data-setbg="img/slider-3.png">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                         	<h2>Notre sélection</h2>
                             <h1>2020</h1>
-                            <a href="reservation.php" class="primary-btn">VOIR PLUS</a>
+                            <a href="reservation.html" class="primary-btn">VOIR PLUS</a>
                         </div>
                     </div>
                 </div>
@@ -165,21 +262,21 @@ session_start();
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="single-features-ads first">
-                            <img src="../img/icons/f-delivery.png" alt="">
+                            <img src="img/icons/f-delivery.png" alt="">
                             <h4>Livraison</h4>
                             <p>Livraison dans le lieu, l`heure et le jour de votre convenance. Réception du client à l`aéroport. </p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="single-features-ads second">
-                            <img src="../img/icons/coin.png" alt="">
+                            <img src="img/icons/coin.png" alt="">
                             <h4>Nouveauté </h4>
                             <p>Une gamme de voitures toutes neuves et diversifiées. </p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="single-features-ads">
-                            <img src="../img/icons/chat.png" alt="">
+                            <img src="img/icons/chat.png" alt="">
                             <h4>Promotions</h4>
                             <p>Ne ratez pas l'occasion et profitez des réductions et offres promotionnelles pour vos prochaines. </p>
                         </div>
@@ -216,7 +313,7 @@ session_start();
                 <div class="col-lg-3 col-sm-6 mix all mahindra ">
                     <div class="single-product-item">
                         <figure>
-                            <a><img src="../img/products/mahindra.png" alt=""></a>
+                            <a><img src="img/products/mahindra.png" alt=""></a>
                         </figure>
                         <div class="product-text">
                             <h6>Mahindra KUV100 K6+</h6>
@@ -227,7 +324,7 @@ session_start();
                 <div class="col-lg-3 col-sm-6 mix all volkswagen ">
                     <div class="single-product-item">
                         <figure>
-                            <a ><img src="../img/products/polo7.png" alt=""></a>
+                            <a ><img src="img/products/polo7.png" alt=""></a>
                         </figure>
                         <div class="product-text">
                             <h6>Volswagan polo 7 sedan</h6>
@@ -238,7 +335,7 @@ session_start();
                 <div class="col-lg-3 col-sm-6 mix all kia ">
                     <div class="single-product-item">
                         <figure>
-                            <a ><img src="../img/products/kiario.png" alt=""></a>
+                            <a ><img src="img/products/kiario.png" alt=""></a>
                         </figure>
                         <div class="product-text">
                             <h6>Kia Rio</h6>
@@ -249,7 +346,7 @@ session_start();
                 <div class="col-lg-3 col-sm-6 mix all suzuki ">
                     <div class="single-product-item">
                         <figure>
-                            <a ><img src="../img/products/suzikiswift.png" alt=""></a>
+                            <a ><img src="img/products/suzikiswift.png" alt=""></a>
                         </figure>
                         <div class="product-text">
                             <h6>Suzuki Swift</h6>
@@ -260,7 +357,7 @@ session_start();
                 <div class="col-lg-3 col-sm-6 mix all toyota ">
                     <div class="single-product-item">
                         <figure>
-                            <a ><img src="../img/products/toyotayaris.png" alt=""></a>
+                            <a ><img src="img/products/toyotayaris.png" alt=""></a>
                         </figure>
                         <div class="product-text">
                             <h6>Toyota Yaris</h6>
@@ -271,7 +368,7 @@ session_start();
                 <div class="col-lg-3 col-sm-6 mix all kia ">
                     <div class="single-product-item">
                         <figure>
-                            <a ><img src="../img/products/kiapicanto.png" alt=""></a>
+                            <a ><img src="img/products/kiapicanto.png" alt=""></a>
                         </figure>
                         <div class="product-text">
                             <h6>Kia Picanto</h6>
@@ -282,7 +379,7 @@ session_start();
                 <div class="col-lg-3 col-sm-6 mix all renault">
                     <div class="single-product-item">
                         <figure>
-                            <a ><img src="../img/products/clio4.png" alt=""></a>
+                            <a ><img src="img/products/clio4.png" alt=""></a>
                         </figure>
                         <div class="product-text">
                             <h6>Renault Clio</h6>
@@ -293,7 +390,7 @@ session_start();
                 <div class="col-lg-3 col-sm-6 mix all peugeot ">
                     <div class="single-product-item">
                         <figure>
-                            <a ><img src="../img/products/301.png" alt=""></a>
+                            <a ><img src="img/products/301.png" alt=""></a>
                         </figure>
                         <div class="product-text">
                             <h6>Peugeot 301</h6>
@@ -311,25 +408,25 @@ session_start();
     <div class="logo-section spad">
         <div class="logo-items owl-carousel">
             <div class="logo-item">
-                <img src="../img/logos/logo-1.png" alt="">
+                <img src="img/logos/logo-1.png" alt="">
             </div>
             <div class="logo-item">
-                <img src="../img/logos/logo-2.png" alt="">
+                <img src="img/logos/logo-2.png" alt="">
             </div>
             <div class="logo-item">
-                <img src="../img/logos/logo-3.png" alt="">
+                <img src="img/logos/logo-3.png" alt="">
             </div>
             <div class="logo-item">
-                <img src="../img/logos/logo-4.png" alt="">
+                <img src="img/logos/logo-4.png" alt="">
             </div>
             <div class="logo-item">
-                <img src="../img/logos/logo-5.png" alt="">
+                <img src="img/logos/logo-5.png" alt="">
             </div>
             <div class="logo-item">
-                <img src="../img/logos/logo-6.png" alt="">
+                <img src="img/logos/logo-6.png" alt="">
             </div>
             <div class="logo-item">
-                <img src="../img/logos/logo-7.png" alt="">
+                <img src="img/logos/logo-7.png" alt="">
             </div>
         </div>
     </div>
@@ -403,14 +500,14 @@ session_start();
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.magnific-popup.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/mixitup.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
