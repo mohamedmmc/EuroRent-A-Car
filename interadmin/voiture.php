@@ -256,7 +256,7 @@ Notifications                </h6>
             <input name="acin" type="text" class="form-control bg-light border-0 small" placeholder="Recherche par immatriculation" aria-label="Search" aria-describedby="basic-addon2"/>
               <div class="input-group-append">
 
-<button name="but8" class="btn btn-primary"  type="submit">
+          <button name="but8" class="btn btn-primary"  type="submit">
                   <i class="fas fa-search fa-sm"></i>
 
                 </button>
@@ -264,6 +264,9 @@ Notifications                </h6>
 
             </div>
           </form>
+        
+
+
 <center/>
 
         <!-- /.container-fluid -->
@@ -330,12 +333,31 @@ Notifications                </h6>
           </tr>
         </thead>
         <tbody>
-
-          <?php
-          $query = "SELECT * FROM voiture";
-          $result_voiture = mysqli_query($conn, $query);    
-
-          while($row = mysqli_fetch_assoc($result_voiture)) { ?>
+           <?php
+          if (isset($_GET['but8'])) 
+          {   
+             if (empty($_GET['acin']))
+             {
+                  $query = "SELECT * FROM voiture order by immatriculation asc";
+              }
+            else
+            {
+                $acin=$_GET['acin'];
+                $query = "SELECT * FROM voiture where immatriculation like '$acin%'";
+            }
+          }
+            else 
+            {
+              $query = "SELECT * FROM voiture order by immatriculation asc";
+            }
+            $result_tasks = mysqli_query($conn, $query);    
+            if (mysqli_num_rows($result_tasks) == 0)
+            {
+                    echo "<script type = \"text/javascript\">
+                    alert(\"Aucune voiture n'est enregistré\");
+                    </script>";
+            } 
+          while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <tr>
             <td><?php echo $row['id']; ?></td>
             <td><?php echo $row['immatriculation']; ?></td>
@@ -355,8 +377,16 @@ Notifications                </h6>
             </td>
           </tr>
           <?php } ?>
+
+          
         </tbody>
       </table>
+
+       <form method="post" action="pdfvoiture.php">  
+<input style="margin-left: auto; margin-right: auto;" type="submit" name="generate_pdf" class="btn btn-success btn-block" value="Générer un PDF" /> 
+  </div>
+</form>
+
     </div>
   </div>
 </main>
