@@ -6,7 +6,7 @@ session_start ();
 if (isset($_SESSION['l']) && isset($_SESSION['p']) && ($_SESSION['r']=="admin")  ) 
 { 
 	
-	header ('location: interadmin/index.html');
+	header ('location: interadmin/index.php');
 
 }
 else if (isset($_SESSION['l']) && isset($_SESSION['p']) && ($_SESSION['r']=="client")  ) 
@@ -15,7 +15,7 @@ else if (isset($_SESSION['l']) && isset($_SESSION['p']) && ($_SESSION['r']=="cli
 }
 else if (isset($_SESSION['l']) && isset($_SESSION['p']) && ($_SESSION['r']=="agent")  )
 {
-	header ('location: interagent/index.html');
+	header ('location: interagent/index.php');
 }
 
 ?>

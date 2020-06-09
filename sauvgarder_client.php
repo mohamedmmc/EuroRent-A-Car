@@ -17,7 +17,7 @@ if (isset($_POST['sauvgarder_client'])) {
     die("Query Failed.");
   }
 
-  header('Location: accueil.html#oModal');
+  header('Location: accueil.php#oModal');
 
 }
 

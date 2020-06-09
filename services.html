@@ -42,7 +42,7 @@
               <a href="#fermer" title="Fermer la fenêtre" class="droite">X</a>
 
             <!-- Nested Row within Card Body -->
-            <div class="row">
+             <div class="row">
               <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
               <div class="col-lg-6">
                 <div class="p-5">
@@ -61,6 +61,12 @@
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
                         <label class="custom-control-label" for="customCheck">Se souvenir</label>
+                        <div class="form-group">
+                            <a class="small" href="#oModal2">Pas de compte? Creer un compte!</a>
+                          </div>
+                           <div class="form-group">
+                            <a class="small" href="#oModal3">Mot de passe oublié!</a>
+                          </div>
                       </div>
                     </div>
                     <input type="submit" name="button" id="button"  value="Valider" class="btn btn-primary btn-user btn-block"/>
@@ -140,6 +146,40 @@
      </section>
   </div>
 </div>
+ <!-- mot de passe oublié début -->
+  <div id="oModal3" class="oModal2">
+     <section>
+
+
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <a href="#fermer" title="Fermer la fenêtre" class="droite">X</a>
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Mot de passe oublié!</h1>
+              </div>
+              <form class="user" action="mdpo.php" method="POST">               
+                <div class="form-group">
+                  <input type="email" required oninvalid="setCustomValidity('tapez une adresse e-mail valide')" oninput="setCustomValidity('')" name="email1" class="form-control form-control-user" placeholder="Adresse email" >
+                </div>
+                <input type="submit" name="forgotpass" class="btn btn-primary btn-user btn-block" value="Envoyer le mot de passe">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+     </section>
+  </div>
+  <!-- mot de passe oublié fin -->
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
