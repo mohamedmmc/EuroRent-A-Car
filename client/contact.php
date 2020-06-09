@@ -1,8 +1,57 @@
-<?php
-session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="zxx">
+<?php
+include('dbconfig.php');
+// Import PHPMailer classes into the global namespace
+// These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// Load Composer's autoloader
+if (isset($_POST['mailing'])) {
+
+require '../phpmailer/vendor/autoload.php';
+
+$mail = new PHPMailer(true);
+
+    //Server settings
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+    $mail->isSMTP();                                            // Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+    $mail->Username   = 'yassine.benouaghrem@esprit.tn';                     // SMTP username
+    $mail->Password   = '181JMT2823';                               // SMTP password
+    $mail->SMTPSecure = 'tls';         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+    $mail->Port       = 587;
+    $id = $_SESSION['id'];
+  $query1 = "SELECT * FROM user WHERE id=$id";
+  $result1 = mysqli_query($conn, $query1);
+      $row1 = mysqli_fetch_array($result1);
+
+ 
+    //Recipients
+    $mail->setFrom($row1['email'], $_POST['sujet']);
+    $mail->addAddress('eurorentacar6@gmail.com', 'yassine ben ouaghrem');     // Add a recipien,
+    
+
+    // Attachments
+    
+    // Content
+   
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = $_POST['sujet'];;
+    $mail->Body    = $_POST['message'];
+
+    if($mail->send()){  echo "<script type = \"text/javascript\">
+    alert(\"MAIL effectué avec succés\");
+    window.location = (\"contact.php\")
+    </script>";
+}
+    //echo 'Message has been sent';
+ 
+}?>
 
 <head>
     <meta charset="UTF-8">
@@ -64,7 +113,7 @@ session_start();
                             <ul class="sub-menu">
                                 <li><a href="gestion_commande.php">Vos commandes</a></li>
                                 <li><a href="pagemodifier_user.php">Profil</a></li>
-                                <li><a href="../accueil.php">Se déconnecter</a></li>
+                                <li><a href="../accueil.html">Se déconnecter</a></li>
                             </ul>
                         </li>
                      </ul> 
@@ -134,25 +183,29 @@ session_start();
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <form action="#" class="contact-form">
+                    <form  method="POST" name="mailing" class="contact-form">
                         <div class="row">
                             <div class="col-lg-6">
-                                <input type="text" placeholder="Prenom">
+                                <input type="text" placeholder="Prenom"required>
                             </div>
                             <div class="col-lg-6">
-                                <input type="text" placeholder="Nom">
+                                <input type="text" placeholder="Nom"required>
                             </div>
                             <div class="col-lg-12">
-                                <input type="email" placeholder="E-mail">
-                                <input type="text" placeholder="Sujet">
-                                <textarea placeholder="Message"></textarea>
+                                <input type="text" name = "sujet" placeholder="Sujet"required>
+                                 <input name="message" placeholder="Message"required></input>
                             </div>
                             <div class="col-lg-12 text-right">
-                                <button type="submit">envoyer un message</button>
+                                <button type="submit" name="mailing"  value="mailing">envoyer un message</button>
                             </div>
+                            
                         </div>
                     </form>
                 </div>
+       
+                   
+                
+                
                 <div class="col-lg-3 offset-lg-1">
                     <div class="contact-widget">
                         <div class="cw-item">
@@ -171,7 +224,7 @@ session_start();
                         <div class="cw-item">
                             <h5>E-mail</h5>
                             <ul>
-                                <li>eurorentacar@gmail.com</li>
+                                <li>eurorentacar6@gmail.com</li>
                                 <li>www.rentacar.com</li>
                             </ul>
                         </div>
@@ -236,18 +289,18 @@ session_start();
             </div>
         </div>
         <div class="social-links-warp">
-			<div class="container">
-				<div class="social-links">
-					<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
-					<a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
-					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
-					<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
-					<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
-					<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
-				</div>
-			</div>
+            <div class="container">
+                <div class="social-links">
+                    <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                    <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+                    <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                    <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                    <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+                    <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+                </div>
             </div>
-		</div>
+            </div>
+        </div>
     </footer>
     <!-- Footer Section End -->
 

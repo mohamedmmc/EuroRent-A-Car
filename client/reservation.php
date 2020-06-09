@@ -132,14 +132,72 @@
 
     <!-- Categories Page Section Begin -->
     
-        <section class="categories-page spad">
+       <section class="categories-page spad">
         <div class="container">
             <div class="row">
             <?php
                          include 'config.php';
-                        $sel = "SELECT * FROM voiture where etat= 'disponible' ";
-                        $rs = $conn->query($sel);
+                          $query1 ="DELETE FROM `promotion` WHERE datef<CURRENT_DATE()" ;  mysqli_query($conn, $query1);
+                        $sel = "SELECT * FROM voiture inner join promotion on voiture.modele=promotion.marquep where etat= 'disponible' ";
+                          
+                          $rs = $conn->query($sel);
+
                         while($rws = $rs->fetch_assoc()){
+
+                          if   ($rws['prixfixe']==$rws['prix'])
+                            { $id=$rws['id'];
+                             $prixf= $rws['prix']*(1-($rws['prixp']/100));
+                         $query1 =" UPDATE `voiture` SET `prix` = $prixf where id=$id ";  mysqli_query($conn, $query1);
+
+                     }
+
+                            //$query = "SELECT * FROM promotion  where marque=$marque";
+                            //$result_tasks = mysqli_query($conn, $query); 
+                            //if (mysqli_num_rows($result_tasks) == 0) {
+            ?>
+               <div class="col-lg-6 col-md-6">
+                    <div class="single-product-item">
+                    <a href="panier.php?id=<?php echo $rws['id'] ?>">
+                                    <img class="thumb"  src="../img/products/promotion1.jpg" >           
+
+                        <img class="thumb"  src="../img/products/<?php echo $rws['pic'];?>" >
+                    </a>
+                              
+                     <div class="product-text">
+                            <h3 href="panier.php?id=<?php echo $rws['id'] ?>"><?php echo $rws['marque'];?>  </h3>
+                                 <h5><span ><?php echo $rws['modele'];?></span></h5>
+                            </a>
+                            <p><?php echo 'ancienPrix: ' .$rws['prixfixe']  ;?>  </p>
+                            <p style="color:#FF0000";><?php echo 'nouveauPrix: ' .$rws['prixfixe']*(1-($rws['prixp']/100) );?> </p>                      
+                        </div>
+                    </div>
+                </div>
+            
+              
+            
+            
+                 <?php
+                }
+                 ?>
+                 <?php
+                         include 'config.php';
+                        $sel = " SELECT * FROM voiture left join promotion on voiture.modele=promotion.marquep WHERE( promotion.marquep IS NULL AND etat= 'disponible') ";
+                          
+                          $rs = $conn->query($sel);
+
+                        while($rws = $rs->fetch_assoc()){
+                             if   ($rws['prixfixe']!=$rws['prix'])
+                             {$id=$rws['id'];
+                             $prixf= $rws['prixfixe'];
+                         $query2 =" UPDATE `voiture` SET `prix` =  $prixf where id=$id ";  mysqli_query($conn, $query2);
+
+
+                             }
+                            //$marque=$rws['modele'];
+
+                            //$query = "SELECT * FROM promotion  where marque=$marque";
+                            //$result_tasks = mysqli_query($conn, $query); 
+                            //if (mysqli_num_rows($result_tasks) == 0) {
             ?>
                <div class="col-lg-6 col-md-6">
                     <div class="single-product-item">
@@ -151,15 +209,20 @@
                             <h3 href="panier.php?id=<?php echo $rws['id'] ?>"><?php echo $rws['marque'];?></h3>
                                  <h5><span ><?php echo $rws['modele'];?></span></h5>
                             </a>
-                            <p><?php echo 'Prix : '.$rws['prix'];?></p>
+                            <p><?php echo 'Prix : '.$rws['prixfixe'];?></p>
                         </div>
                     </div>
                 </div>
-            <?php
+            
+
+            
+            
+                 <?php
                 }
-            ?>
+                 ?>
+
         </div>
-    </section>  <!--  end listing section  -->
+    </section>   <!--  end listing section  -->
 
 
 
