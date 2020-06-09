@@ -18,7 +18,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -30,7 +30,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -52,13 +52,17 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestions:</h6>
-            <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
-            <a class="collapse-item" href="gestionreservation.php">Consulter les commandes</a>
+           <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
+             <a class="collapse-item " href="gestionreservation.php">Gestion des commandes</a>
+            <a class="collapse-item " href="gestionreservation_effectue.php">Les commandes effectués</a>
+            <a class="collapse-item" href="gestionfacture.php">Gestion des  factures</a>
             <a class="collapse-item " href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item" href="crudchauffeur.php">Gestion des chauffeurs</a>
             <a class="collapse-item active" href="client.php">Gestion des clients</a>
             <a class="collapse-item" href="gestionconge.php">Gestion des congés</a>
             <a class="collapse-item" href="voiture.php">Gestion des voitures</a>
+            <a class="collapse-item" href="gestionpromotion.php">Gestion des promotions </a>
+            <a class="collapse-item " href="gestioncoupon.php">Gestion des coupons</a>
 
           </div>
         </div>
@@ -344,7 +348,7 @@ Notifications                </h6>
    }
    else {
    $acin= $_GET['acin'];
-          $query = "SELECT * FROM user where id=$acin and rolee = 'client' ";}}
+          $query = "SELECT * FROM user where id like '$acin%' and rolee = 'client' ";}}
 else {
 
      $query = "SELECT * FROM user where rolee='client' order by id asc";}   
@@ -373,17 +377,15 @@ else {
           <?php } ?>
         </tbody>
       </table>
+        <center><form method="post" action="pdfclient.php">  
+<input style="margin-left: auto; margin-right: auto;" type="submit" name="generate_pdf" class="btn btn-success btn-block" value="Générer un PDF" /> 
+</form></center>
     </div>
   </div>
   </div>
 </main>
 
-<?php include('includes/footer.php'); ?>
-
       <!-- End of Main Content -->
-
-      
-
     </div>
     <!-- End of Content Wrapper -->
 
@@ -408,7 +410,7 @@ else {
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="../login.html">Logout</a>
+          <a class="btn btn-primary" href="../accueil.php">Logout</a>
         </div>
       </div>
     </div>

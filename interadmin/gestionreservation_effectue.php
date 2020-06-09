@@ -1,9 +1,12 @@
+<?php
+    include("functions.php");
+?>
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
 <meta charset="UTF-8">
-    <title>Commandes en cours</title>
+    <title>Commandes effectuées</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!-- BOOTSTRAP 4 -->
     <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
@@ -26,8 +29,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
-<?php include("db.php"); 
-include("functions.php");?>
+<?php include("db.php"); ?>
 
 <?php include('includes/header.php'); ?>
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -81,9 +83,9 @@ include("functions.php");?>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestions:</h6>
-            <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
-             <a class="collapse-item active" href="gestionreservation.php">Gestion des commandes</a>
-            <a class="collapse-item " href="gestionreservation_effectue.php">Les commandes effectués</a>
+             <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
+             <a class="collapse-item " href="gestionreservation.php">Gestion des commandes</a>
+            <a class="collapse-item active" href="gestionreservation_effectue.php">Les commandes effectués</a>
             <a class="collapse-item" href="gestionfacture.php">Gestion des  factures</a>
             <a class="collapse-item " href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item" href="crudchauffeur.php">Gestion des chauffeurs</a>
@@ -265,6 +267,7 @@ include("functions.php");?>
               </div>
             </li>
 
+
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -360,7 +363,7 @@ include("functions.php");?>
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Les commandes </h1>
+          <h1 class="h3 mb-4 text-gray-800">Les commandes effectuées</h1>
 
          <center>
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">
@@ -376,8 +379,8 @@ include("functions.php");?>
 
             </div>
           </form>
-</center><br>
-          <form  method="GET">
+<center/>
+<form  method="GET">
           <div class="input-group">
 
             <input name="date1" type="date" class="form-control "  aria-label="Search" aria-describedby="basic-addon2"/>
@@ -387,7 +390,7 @@ include("functions.php");?>
 
             </div>
           </form>
-
+      
         <!-- /.container-fluid -->
 
       </div>
@@ -429,20 +432,21 @@ include("functions.php");?>
   <tbody>
 
 
+
  <?php 
 
 
     if (isset($_GET['tridate'])) 
   {   if (empty($_GET['date1']and $_GET['date2'] )){
    
-      $query = "SELECT * FROM commande  where etat='en cours' ORDER BY id asc" ;
+      $query = "SELECT * FROM commande  where etat='effectue' ORDER BY id asc" ;
 
    }
    else {
    $date1= $_GET['date1'];
       $date2= $_GET['date2'];
         echo 'Du '.$date1 ; echo '   Au '.$date2;
-          $query = "SELECT * FROM commande where (depart between '$date1' and '$date2') and  (retour between '$date1' and '$date2') ";}
+          $query = "SELECT * FROM commande where (depart between '$date1' and '$date2') and  (retour between '$date1' and '$date2') and etat='effectue' ";}
 $result_tasks = mysqli_query($conn, $query);    
 
     while($row = mysqli_fetch_assoc($result_tasks)) {?>
@@ -510,12 +514,12 @@ $result_tasks = mysqli_query($conn, $query);
   {   
    if (empty($_GET['acin'])){
    
-      $query = "SELECT * FROM commande  where etat='en cours' ORDER BY id asc" ;
+      $query = "SELECT * FROM commande where etat='effectue' ORDER BY id desc" ;
 
    }
    else {
    $acin= $_GET['acin'];
-          $query = "SELECT * FROM commande where client=$acin ";}
+          $query = "SELECT * FROM commande where client=$acin and etat='effectue' ";}
 $result_tasks = mysqli_query($conn, $query);    
 
     while($row = mysqli_fetch_assoc($result_tasks)) {?>
@@ -577,19 +581,17 @@ $result_tasks = mysqli_query($conn, $query);
     </tr>
     <?php   }
         }
-else{  
+else {  
 ?>
 
     
-<?php   
+    <?php
+$query = "SELECT * FROM commande where etat='effectue' ORDER BY id desc" ;
 
-$query = "UPDATE `commande` SET `etat`='effectue' WHERE (Datediff(now(),retour)>0) ";
+
     $result_tasks = mysqli_query($conn, $query);    
 
-    $query2 = "SELECT * FROM commande where etat='en cours' ORDER BY id desc " ;
-    $result_tasks2 = mysqli_query($conn, $query2); 
-
-    while($row = mysqli_fetch_assoc($result_tasks2)) {?>
+    while($row = mysqli_fetch_assoc($result_tasks)) {?>
 
       
     <tr>
@@ -638,10 +640,7 @@ $query = "UPDATE `commande` SET `etat`='effectue' WHERE (Datediff(now(),retour)>
   
 
     </tr>
-    <?php  }} ?>
-
-<!-- NEWWWWWWWWWWWWWWWWWWWWWWWW-->
-
+    <?php  }}?>
         </tbody>
         </table>
         <br>
@@ -650,6 +649,7 @@ $query = "UPDATE `commande` SET `etat`='effectue' WHERE (Datediff(now(),retour)>
 </main>
 
 
+    
       <!-- End of Main Content -->
 
       

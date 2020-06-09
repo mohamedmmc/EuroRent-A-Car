@@ -18,7 +18,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -30,7 +30,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -53,12 +53,16 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestions:</h6>
             <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
-            <a class="collapse-item" href="gestionreservation.php">Consulter les commandes</a>
+             <a class="collapse-item " href="gestionreservation.php">Gestion des commandes</a>
+            <a class="collapse-item " href="gestionreservation_effectue.php">Les commandes effectués</a>
+            <a class="collapse-item" href="gestionfacture.php">Gestion des  factures</a>
             <a class="collapse-item " href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item" href="crudchauffeur.php">Gestion des chauffeurs</a>
             <a class="collapse-item" href="client.php">Gestion des clients</a>
-            <a class="collapse-item active" href="gestionconge.php">Gestion des congés </a>
+            <a class="collapse-item active" href="gestionconge.php">Gestion des congés</a>
             <a class="collapse-item" href="voiture.php">Gestion des voitures</a>
+            <a class="collapse-item" href="gestionpromotion.php">Gestion des promotions </a>
+            <a class="collapse-item " href="gestioncoupon.php">Gestion des coupons</a>
           </div>
         </div>
       </li>
@@ -147,17 +151,7 @@
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-
+        
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
@@ -182,11 +176,19 @@
             </li>
 
             <!-- Nav Item - Alerts -->
+            <?php 
+
+$requete = $conn->query ("SELECT COUNT(cin) as nbcin FROM conge where etat=0");
+
+$nbligne = $requete->fetch_assoc();
+
+?>
             <li class="nav-item dropdown no-arrow mx-1" >
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 <i class="fas fa-bell fa-fw"></i>
+                <?php if (($nbligne['nbcin']) >= 1){ ?>
                 <span class="badge badge-danger badge-counter">1+</span>
-
+                <?php } ?>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" href="gestionconge.php">
@@ -199,11 +201,11 @@ Notifications                </h6>
                       <i class="fas fa-file-alt text-white" ></i>
 
                     </div>
-                  </div>
-               
-                  <div>
-       
-                    <span class="font-weight-bold">demandes de congé sont disponibles ! </span>
+  
+          <div>
+
+            <span class="font-weight-bold"> <?php            echo '  Il y a ' . $nbligne['nbcin'] . ' congés disponibles non validés.';
+?></span>
 
                  
                   </div>
@@ -297,6 +299,7 @@ Notifications                </h6>
                       <th>debut</th>
                       <th>fin</th>
                       <th>motif</th>
+
 </tr>
 </thead>
 <tbody>
@@ -325,13 +328,22 @@ else {
           <td><?php echo $row['debut']; ?></td>
           <td><?php echo $row['fin']; ?></td>
           <td><?php echo $row['motif']; ?></td>
+
   <td>
-    <a href="edit_conge.php?id=<?php echo $row['id']?>" class="btn btn-secondary">
-      <i class="fas fa-marker"></i>
+  <?php if ($row['etat']==0) { ?>
+    <a href="valider_conge.php?id=<?php echo $row['id']?>" >
+
+    <img src="../img/ap.jpg" >
+  <?php }  ?>
+  
     </a>
-    <a href="delete_conge.php?id=<?php echo $row['id']?>" class="btn btn-danger">
-      <i class="far fa-trash-alt"></i>
+    <a href="delete_conge.php?id=<?php echo $row['id']?>" >
+    <img src="../img/rej.jpg" >
     </a>
+
+    <?php if ($row['etat']==1) { ?>
+      <img src="../img/appv.png" >
+  <?php } ?>
   </td>
 </tr>
 <?php } ?>

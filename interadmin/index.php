@@ -1,41 +1,36 @@
+<?php
+    include("functions.php");
+include('db.php'); 
+?>
+
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
-<meta charset="UTF-8">
-    <title>PHP CRUD MYSQL</title>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <!-- BOOTSTRAP 4 -->
-    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
-    <!-- FONT AWESOEM -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="js/jquery-ui.css" type="text/css">
-    <link rel="stylesheet" href="js/jquery.datetimepicker.min.css" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<?php include("db.php"); ?>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" />  
 
-<?php include('includes/header.php'); ?>
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+  
+  <title> Admin</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-
+</head>
 
 <body id="page-top">
 
@@ -50,17 +45,17 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin </div>
+        <div class="sidebar-brand-text mx-3"> Admin </div>
       </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>Accueil</span></a>
       </li>
 
       <!-- Divider -->
@@ -68,29 +63,30 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Interface Admin
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Vos Gestions:</span>
+          <span>Les Gestions</span>
         </a>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Gestions:</h6>
-             <a class="collapse-item active" href="gestionagent.php">Gestion des agents</a>
+            <h6 class="collapse-header">Les Gestions:</h6>
+                 <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
              <a class="collapse-item " href="gestionreservation.php">Gestion des commandes</a>
             <a class="collapse-item " href="gestionreservation_effectue.php">Les commandes effectués</a>
-            <a class="collapse-item " href="gestionfacture.php">Gestion des  factures</a>
-            <a class="collapse-item active" href="crudnewsletter.php">Consulter les abonnés</a>
+            <a class="collapse-item" href="gestionfacture.php">Gestion des  factures</a>
+            <a class="collapse-item " href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item" href="crudchauffeur.php">Gestion des chauffeurs</a>
             <a class="collapse-item" href="client.php">Gestion des clients</a>
             <a class="collapse-item" href="gestionconge.php">Gestion des congés</a>
             <a class="collapse-item" href="voiture.php">Gestion des voitures</a>
             <a class="collapse-item" href="gestionpromotion.php">Gestion des promotions </a>
             <a class="collapse-item " href="gestioncoupon.php">Gestion des coupons</a>
+
           </div>
         </div>
       </li>
@@ -170,6 +166,7 @@
 
       <!-- Main Content -->
       <div id="content">
+
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -216,52 +213,55 @@
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                   <?php
+                $query = "SELECT * from `notifications` where `status` = 'unread' order by `date` DESC";
+                if(count(fetchAll($query))>0){
+                ?>
+              <?php
+                }
+                    ?>
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter"><?php if(count(fetchAll($query))>0){echo count(fetchAll($query));} ?></span>
               </a>
               <!-- Dropdown - Alerts -->
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 12, 2019</div>
-                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                  </div>
+              <?php
+                $query = "SELECT * from `notifications` order by `date` DESC";
+                 if(count(fetchAll($query))>0){
+                     foreach(fetchAll($query) as $i){
+                ?>
+              <a style ="
+                         <?php
+                            if($i['status']=='unread'){
+                                echo "font-weight:bold;";
+                            }
+                         ?>
+                         " class="dropdown-item" href="view.php?id=<?php echo $i['id'] ?>">
+                <small><i><?php echo date('F j, Y, g:i a',strtotime($i['date'])) ?></i></small><br/>
+                  <?php 
+                  
+                if($i['type']=='voiture'){
+                    echo "Nouvelle reservation !";
+                }
+                  
+                  ?>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 7, 2019</div>
-                    $290.29 has been deposited into your account!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">December 2, 2019</div>
-                    Spending Alert: We've noticed unusually high spending for your account.
-                  </div>
-                </a>
+              <div class="dropdown-divider"></div>
+                <?php
+                     }
+                 }else{
+                     echo "No Records yet.";
+                 }
+                     ?>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
             </li>
 
+  
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -357,96 +357,402 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Les abonnés</h1>
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Accueil</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
 
-         <center>
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">
-          <div class="input-group">
-            <input name="acin" type="text" class="form-control bg-light border-0 small" placeholder="Recherche par mail abonné" aria-label="Search" aria-describedby="basic-addon2"/>
-              <div class="input-group-append">
+          <!-- Content Row -->
+          <div class="row">
 
-<button name="but8" class="btn btn-primary"  type="submit">
-                  <i class="fas fa-search fa-sm"></i>
+            <!-- Earnings (Monthly) Card Example -->
 
-                </button>
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Revenue Total</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php 
+//index.php
+$query_total = "
+   SELECT   SUM(prix) as total FROM commande   ";
+$result_total = mysqli_query($conn, $query_total);
+while($row = mysqli_fetch_assoc($result_total)) { 
+ echo $row['total'].' DT'; 
+}
+?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Paiement avec Paypal</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php 
+//index.php
+$query_paypal = "SELECT   SUM(prix) as total_paypal FROM commande where paiement = 'paypal'   ";
+$result_paypal = mysqli_query($conn, $query_paypal);
+while($row = mysqli_fetch_assoc($result_paypal)) { 
+ echo $row['total_paypal'].' DT'; 
+}
+?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fab fa-cc-paypal fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Paiement sur place</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php 
+//index.php
+$query_agence = "SELECT   SUM(prix) as total_agence FROM commande where paiement = 'agence'   ";
+$result_agence = mysqli_query($conn, $query_agence);
+while($row = mysqli_fetch_assoc($result_agence)) { 
+ echo $row['total_agence'].' DT'; 
+}
+?></div>
+                        </div>
+                        <div class="col">
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-building fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pending Requests Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Paiement avec carte</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><?php 
+//index.php
+$query_carte = "SELECT   SUM(prix) as total_carte FROM commande where paiement = 'carte'   ";
+$result_carte = mysqli_query($conn, $query_carte);
+while($row = mysqli_fetch_assoc($result_carte)) { 
+ echo $row['total_carte'].' DT'; 
+}
+?></div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="far fa-credit-card fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Row -->
+<?php 
+$connect = mysqli_connect("localhost", "root", "", "crud");
+$query = "SELECT * FROM commande";
+$result4 = mysqli_query($connect, $query);
+$chart_data = '';
+while($row = mysqli_fetch_array($result4))
+{
+ $chart_data .= "{ id:'".$row["id"]."', Prix:".$row["prix"]."}, ";
+}
+$chart_data = substr($chart_data, 0, -2);
+?>
+
+
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Nombres de jours pour les réservations récentes</h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Card Body -->
+       <?php 
+$connect = mysqli_connect("localhost", "root", "", "crud");
+$query = "SELECT id,TIMESTAMPDIFF(DAY,depart,retour) as jour FROM `commande`  ORDER BY `id` asc ";
+$result = mysqli_query($connect, $query);
+$chart_data = '';
+while($row = mysqli_fetch_array($result))
+{
+ $chart_data .= "{ id:'".$row["id"]."', jour:".$row["jour"]."}, ";
+}
+$chart_data = substr($chart_data, 0, -2);
+?>
+
+                <div class="card-body">
+                  <div class="container" >
+   <div id="chart"></div>
+  </div>
+                </div>
+              </div>
+            </div>
+                   
+        <script>
+Morris.Bar({
+ element : 'chart',
+ data:[<?php echo $chart_data; ?>],
+ xkey:'id',
+ ykeys:['jour'],
+ labels:['Nombres de jours'],
+ hideHover:'auto',
+ stacked:true
+});
+</script>
+
+            <!-- Pie Chart -->
+            <?php 
+//index.php
+$connect = mysqli_connect("localhost", "root", "", "crud");
+$sub_query = "
+   SELECT etat, count(*) as etat_commande FROM commande 
+   GROUP BY etat ";
+$result = mysqli_query($connect, $sub_query);
+$data = array();
+while($row = mysqli_fetch_array($result))
+{
+ $data[] = array(
+  'label'  => $row["etat"],
+  'value'  => $row["etat_commande"]
+ );
+}
+$data = json_encode($data);
+?>
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Etat des réservations</h6>
+                  
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div id="chart2"></div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+<script>
+
+$(document).ready(function(){
+ 
+ var donut_chart = Morris.Donut({
+     element: 'chart2',
+     colors:['#1cc88a'],
+     data: <?php echo $data; ?>
+    });
+  
+});
+
+</script>
+
+
+<script type="text/javascript" src="js/loader.js"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['paiement', 'type_paiement'],
+         <?php
+         $sql =   "SELECT paiement, count(*) as type_paiement FROM commande 
+   GROUP BY paiement ";
+         $fire = mysqli_query($conn,$sql);
+          while ($result = mysqli_fetch_assoc($fire)) {
+            echo"['".$result['paiement']."',".$result['type_paiement']."],";
+          }
+
+         ?>
+        ]);
+
+        var options = {
+          title: ''
+
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+     <div class="row">
+
+            <!-- Content Column -->
+            <div class="col-xl-8 col-lg-7">
+
+         <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Pourcentage des réservations avec et sans chauffeur</h6>
+                 
+                </div>
+ <div class="card-body">
+                  <div >
+        <div id="piechart2"  style="width: 650px; height: 500px;"></div>
+  </div>
+                </div>
+              </div>
+
+</div>
+
+<div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4" style=" height: 595px;">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Rechercher les réservations</h6>
+                  
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+<form  method="GET">
+          <div class="form-group">
+ 
+            <input name="date1" type="date" class="form-control "  aria-label="Search" aria-describedby="basic-addon2"/>  </div>
+
+                      <div class="form-group">
+
+            <input name="date2" type="date" class="form-control " aria-label="Search" aria-describedby="basic-addon2"/>  </div>
+          
+          <div class="form-group">
+             <input type="submit" name="tridate" class="btn btn-primary"  value="Rechercher">
 
             </div>
           </form>
-<center/>
-        <!-- /.container-fluid -->
+         <?php 
+    if (isset($_GET['tridate'])) 
+  {   if (!empty($_GET['date1']and $_GET['date2'] ))
+{
+   $date1= $_GET['date1'];
+      $date2= $_GET['date2'];?>
+      <br><br>
 
-      </div>
-      <main class="container p-4">
- 
+        <?php
 
-      <!-- ADD TASK FORM -->
-      
-<div class="container" center>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>ID Abonné</th>
-      <th>Email</th>
-      <th>Date de l'abonnement</th>
+          $query_recherche = "SELECT  count(id) as nb_commande FROM commande  where (depart between '$date1' and '$date2') and  (retour between '$date1' and '$date2') and etat='en cours'";
+          $res = mysqli_query($conn,$query_recherche);             
+  while  ($rows =mysqli_fetch_array($res)): ?>
+          <a style="font-weight: bold;font-size: 15px; color:#004FE4;"><?php echo 'Du '.$date1.' Au '.$date2;?>
+          <br><br> </a> <a style="font-weight: bold;font-size: 25px; color:#1D345F; ">
+          <?php  echo "Vous avez ".$rows['nb_commande'].' réservations';?> </a>
+                <?php   endwhile;
 
-      
-    </tr>
-  </thead>
-  <tbody>
+        }
+       else{ ?> <a style="font-weight: bold;font-size: 25px; color:#8194B8; "> <?php echo "Faites une recherche ";?> </a>  <?php
+}}
 
-    <?php
-  if (isset($_GET['but8'])) 
-  {   
-    if (empty($_GET['acin']))
-    {
-      $query = "SELECT * FROM newsletters ORDER BY id asc" ;
-    }
-    else 
-    {
-      $acin= $_GET['acin'];
-      $query = "SELECT * FROM newsletters where email like '$acin%' ";
-    }
-  }
-  else 
-  {
-    $query = "SELECT * FROM newsletters ORDER BY id asc" ;}
-    $result_tasks = mysqli_query($conn, $query);   
-    if (mysqli_num_rows($result_tasks) == 0)
-    {
-        echo "<script type = \"text/javascript\">
-                     alert(\"Aucun abonnement\");
-                       </script>";
-    } 
 
-    while($row = mysqli_fetch_assoc($result_tasks)) 
-    { ?>
-    <tr>
-    <td><?php echo $row['id']; ?></td>
-      <td><?php echo $row['email']; ?></td>
-      <td><?php echo $row['date']; ?></td>
-                  <td>
-              <a href="suprabo.php?id=<?php echo $row['id']?>" class="btn btn-danger">
-                <i class="far fa-trash-alt"></i>
-              </a>
-            </td>
-      </td>
-    </td>
-     
-    </tr>
-    <?php } ?>
-        </tbody>
-        </table>
-        <br>
-    </div>
-    <form style="max-width: 250px; margin-right: auto; margin-left: auto;" method="post" action="newsletter.php">  
-<input type="submit" name="envois_mail" class="btn btn-success btn-block" value="Envois Mail" /> 
+          ?>
+                </div>
+              </div>
+            </div>
+          </div>
+
+              </div>
+
+
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Pourcentage de l'utilisation de chaque mode de paiement</h6>
+                 
+                </div>
+ <div class="card-body">
+                  <div >
+        <center><div id="piechart"  style="width: 900px; height: 500px;"></div></center>
   </div>
-</main>
+                </div>
+              </div>
+
+            <!-- Content Column -->
+           
+            <script type="text/javascript" src="js/loader.js"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['paiement', 'type_paiement'],
+         <?php
+         $sql =   "SELECT chauffeur, count(*) as type_reservation FROM commande 
+   GROUP BY chauffeur ";
+         $fire = mysqli_query($conn,$sql);
+          while ($result = mysqli_fetch_assoc($fire)) {
+            echo"['".$result['chauffeur']."',".$result['type_reservation']."],";
+          }
+
+         ?>
+        ]);
+
+        var options = {
+          title: ''
+
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+      
+        <!-- /.container-fluid -->
 
       <!-- End of Main Content -->
 
-      
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020 by Les experts</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->
@@ -472,41 +778,29 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="../accueil.php">Logout</a>
+          <a class="btn btn-primary" href="../accueil.html">Logout</a>
         </div>
       </div>
     </div>
   </div>
-  </body>
 
-   <!-- Js Plugins -->
-   <script src="js/jquery-ui.js" type ="text/javascript"></script>
-    <script src="js/jquery.js" type ="text/javascript" ></script>
-    <script src="js/jquery-3.3.1.min.js" type ="text/javascript" ></script>
-    <script src="js/bootstrap.min.js" type ="text/javascript"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/jquery.datetimepicker.full.js"></script>
-    <script >
-      
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        $("#datetime").datetimepicker()
-          
-       
-       
-    </script>
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
 
+  <!-- Page level plugins -->
+  <script src="vendor/chart.js/Chart.min.js"></script>
 
- <script >
-    
-$("#datetime2").datetimepicker()
-    </script>
+  <!-- Page level custom scripts -->
+  <script src="js/demo/chart-area-demo.js"></script>
+  <script src="js/demo/chart-pie-demo.js"></script>
+
 </body>
 
 </html>
-<?php include('includes/footer.php'); ?>

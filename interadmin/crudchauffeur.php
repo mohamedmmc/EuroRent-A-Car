@@ -18,7 +18,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -30,7 +30,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="index.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -53,12 +53,17 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestions:</h6>
             <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
-            <a class="collapse-item " href="gestionreservation.php">Consulter les commandes</a>
+            <a class="collapse-item " href="gestionreservation.php">Gestion des commandes</a>
+            <a class="collapse-item " href="gestionreservation_effectue.php">Les commandes effectués</a>
+            <a class="collapse-item" href="gestionfacture.php">Gestion des  factures</a>
             <a class="collapse-item " href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item active" href="crudchauffeur.php">Gestion des chauffeurs</a>
             <a class="collapse-item" href="client.php">Gestion des clients</a>
             <a class="collapse-item" href="gestionconge.php">Gestion des congés</a>
             <a class="collapse-item" href="voiture.php">Gestion des voitures</a>
+            <a class="collapse-item" href="gestionpromotion.php">Gestion des promotions </a>
+            <a class="collapse-item " href="gestioncoupon.php">Gestion des coupons</a>
+
           </div>
         </div>
       </li>
