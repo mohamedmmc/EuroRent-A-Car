@@ -361,13 +361,13 @@ function calcul()
                     var date2 =   new Date(document.getElementById("datetime2").value);
                     var prix = document.getElementById("test").value;
                     var diff = dateDiff(date1, date2);
-                    var total=((diff.day) +1 )*prix;
+                    var total=((diff.day) )*prix;
                     var ch=document.getElementById("chauffeur").value;
                     
                    
                     if(document.getElementById("chauffeur").value=="Avec chauffeur")
                     {
-                         total= total + ((diff.day) +1 )*50;
+                         total= total + ((diff.day) )*50;
                     }
                     document.getElementById("prix").value =total;
                     

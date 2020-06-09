@@ -136,7 +136,7 @@
       
 
 <!-- ADD TASK FORM -->
-  <form name="commande" action="save_commande.php" method="POST">
+  < <form name="commande" action="save_commande.php" method="POST">
 
 <div class="container" center>
     <table class="table table-bordered">
@@ -194,6 +194,67 @@
   </thead>
     <tbody>
    <?php
+   if (isset($_POST['but8'])) 
+{ 
+  if (!(empty($_POST['acode']))){
+
+ 
+  $acode= $_POST['acode'];
+
+   $query = "SELECT * FROM coupon  where codepromo=$acode";
+   $result_tasks = mysqli_query($conn, $query); 
+   ($row = mysqli_fetch_array($result_tasks)) ;
+   $id = $_SESSION['id'];
+  $query1 = "SELECT * FROM user WHERE id=$id";
+  $result1 = mysqli_query($conn, $query1);
+      $row1 = mysqli_fetch_array($result1);
+
+         $pri = $row['pourcentage'];  
+         $mail= $row['mail']; 
+         $email= $row1['email']; 
+         $pour=1-($pri/100);
+         if (mysqli_num_rows($result_tasks) != 0) {
+            if ($mail==$email)
+
+{ 
+         $client = $_SESSION['id'];
+    $query = "SELECT SUM(prix) as Prix_Total , count(prix) as Quantite FROM reservation WHERE client=$client";
+    $result_tasks = mysqli_query($conn, $query);    
+
+    while($row = mysqli_fetch_assoc($result_tasks)) { 
+        $prix_total=$row['Prix_Total']*(1-($pri/100));
+        $quantie=$row['Quantite'];
+        $query5 = "UPDATE reservation set  prix = prix * $pour  WHERE client=$client";
+  $result5 = mysqli_query($conn, $query5);
+  $query6= "DELETE   FROM coupon  where codepromo=$acode";
+   $result_tasks6 = mysqli_query($conn, $query6); 
+echo "<script type = \"text/javascript\">
+    alert(\"coupon valide remise de $pri % \");
+</script>";
+}
+}else{echo "<script type = \"text/javascript\">
+    alert(\"email $email est non valide\");
+    window.location = (\"confirmation.php\")
+    </script>";
+
+    }}
+else{echo "<script type = \"text/javascript\">
+    alert(\"coupon numero $acode  non trouvee\");
+    window.location = (\"confirmation.php\")
+    </script>";
+
+    }
+
+}}
+
+
+
+
+
+
+
+else{
+
      $client = $_SESSION['id'];
     $query = "SELECT SUM(prix) as Prix_Total , count(prix) as Quantite FROM reservation WHERE client=$client";
     $result_tasks = mysqli_query($conn, $query);    
@@ -202,14 +263,14 @@
         $prix_total=$row['Prix_Total'];
         $quantie=$row['Quantite']?>
     <tr>
-      </td> <?php }?>
+      </td> <?php }}?>
       <td><?php echo $quantie; ?></td>  
       <td><?php echo $prix_total; echo " dt"; ?></td>  
     </tr>
   </tbody>
 
  </table>
-
+        
      <div class="form-row">
                     <div class="col-lg-12">
                         <div class="payment-method">
@@ -236,6 +297,10 @@
         </div>
          </form>
         <br>
+         <form  method="post" >
+Entrez votre etiquette : <input type="number" name="acode"  />
+<input  name ="but8" type="submit" class="btn btn-secondary btn-lg" value="remise" />
+</form>
     </div>
     <!-- Cart Page Section End -->
 

@@ -52,8 +52,8 @@ if ($chauffeur=='Avec chauffeur')
                 $query = "UPDATE chauffeur set retour = '$retour' WHERE id=$idc";
                 mysqli_query($conn, $query);
             }
-             	echo "<script type = \"text/javascript\">
-                     alert(\"Réservation effectué avec succés\");
+              echo "<script type = \"text/javascript\">
+                     alert(\"Réservation ajouté au panier !\");
                       window.location = (\"accueil.php\")
                        </script>";
         } 
