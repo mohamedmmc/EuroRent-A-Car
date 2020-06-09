@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="zxx">
 
 <head>
 <meta charset="UTF-8">
-    <title>Commandes en cours</title>
+    <title>Factures</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <!-- BOOTSTRAP 4 -->
     <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
@@ -81,9 +82,9 @@ include("functions.php");?>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestions:</h6>
-             <a class="collapse-item active" href="gestionreservation.php">Gestion des commandes</a>
+            <a class="collapse-item " href="gestionreservation.php">Gestion des commandes</a>
             <a class="collapse-item " href="gestionreservation_effectue.php">Les commandes effectués</a>
-            <a class="collapse-item" href="gestionfacture.php">Gestion des  factures</a>
+            <a class="collapse-item active" href="gestionfacture.php">Gestion des  factures</a>
             <a class="collapse-item " href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item" href="crudchauffeur.php">Gestion des chauffeurs</a>
             <a class="collapse-item" href="client.php">Gestion des clients</a>
@@ -359,38 +360,20 @@ include("functions.php");?>
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Les commandes </h1>
+          <h1 class="h3 mb-4 text-gray-800">Facture</h1>
 
-         <center>
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">
-          <div class="input-group">
-            <input name="acin" type="text" class="form-control bg-light border-0 small" placeholder="Recherche par ID client" aria-label="Search" aria-describedby="basic-addon2"/>
-              <div class="input-group-append">
-
-<button name="but8" class="btn btn-primary"  type="submit">
-                  <i class="fas fa-search fa-sm"></i>
-
-                </button>
-              </div>
-
-            </div>
-          </form>
-</center><br>
-          <form  method="GET">
-          <div class="input-group">
-
-            <input name="date1" type="date" class="form-control "  aria-label="Search" aria-describedby="basic-addon2"/>
-            <input name="date2" type="date" class="form-control " aria-label="Search" aria-describedby="basic-addon2"/>
-
-             <input type="submit" name="tridate" class="btn btn-primary"  value="Rechercher">
-
-            </div>
-          </form>
-
+         
         <!-- /.container-fluid -->
 
       </div>
+
+    <?php  $cat="SELECT id FROM user where rolee='client' ";
+  $listcat=mysqli_query($conn,$cat);
+   $cat2="SELECT id FROM commande ";
+  $listcat2=mysqli_query($conn,$cat2); ?>
+
       <main class="container p-4">
+  
   <div class="row">
     <div class="col-md-4">
       <!-- MESSAGES -->
@@ -405,250 +388,106 @@ include("functions.php");?>
       <?php session_unset(); } ?>
 
       <!-- ADD TASK FORM -->
-      
-<div class="container" center>
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>ID Réservation</th>
-      <th>ID Client</th>
-      <th>Nom et prénom</th>
-      <th>ID Voiture</th>
-      <th>Date départ</th>
-      <th>Date retour</th>
-      <th>Livraison</th>
-      <th>Chauffeur</th>
-      <th>Etat</th>
-      <th>Prix</th>
-      <th>Mode de paiement</th>
-      <th>Date d'achat</th>
-      
-    </tr>
-  </thead>
-  <tbody>
+      <div class="card card-body">
+        <form action="save_facture.php" method="POST" name="form">
+          
+
+         <div class="form-group">
+      <label style="font-weight: bold">Identifiant de la réservation:</label> <br>
+            <select class="form-control" name="reservation" minlength="1" required oninvalid="setCustomValidity('Choisir')" oninput="setCustomValidity('')">
+      <?php while ($row = mysqli_fetch_array($listcat2)):?>
+        <option value="<?php echo $row[0]; ?>"><?php echo $row[0]; ?></option>
+      <?php endwhile; ?>
+    </select>
+          </div>
+ <div class="form-group">
+                <label style="font-weight: bold">Facture au nom de:</label> <br>
+
+            <input type="text" name="nom_client" minlength="1" required oninvalid="setCustomValidity('Saisir le nom du client')" oninput="setCustomValidity('')" class="form-control"  placeholder="Client" autofocus>
+          </div>
+
+        <div class="form-group">
+                <label style="font-weight: bold">Agent chargé :</label> <br>
+
+            <input type="text" name="agent" minlength="1" required oninvalid="setCustomValidity('Le nom doit etre non vide')" oninput="setCustomValidity('')" class="form-control"  placeholder="Agent" autofocus>
+          </div>
+           <div class="form-group">
+                <label style="font-weight: bold">Date de la facture:</label> <br>
+
+            <input id="datetime" type="text" name="date_facture" minlength="1" required oninvalid="setCustomValidity('Saisir la date')" oninput="setCustomValidity('')" class="form-control" autocomplete="off" placeholder="Date" autofocus>
+          </div>
+
+          <div class="form-group">
+                <label style="font-weight: bold">Lieu de facturation:</label> <br>
+
+            <input type="text" name="lieu" minlength="1" required oninvalid="setCustomValidity('Saisir le lieu')" oninput="setCustomValidity('')" class="form-control"  placeholder="Lieu" autofocus>
+          </div>
 
 
- <?php 
-
-
-    if (isset($_GET['tridate'])) 
-  {   if (empty($_GET['date1']and $_GET['date2'] )){
-   
-      $query = "SELECT * FROM commande  where etat='en cours' ORDER BY id asc" ;
-
-   }
-   else {
-   $date1= $_GET['date1'];
-      $date2= $_GET['date2'];
-        echo 'Du '.$date1 ; echo '   Au '.$date2;
-          $query = "SELECT * FROM commande where (depart between '$date1' and '$date2') and  (retour between '$date1' and '$date2') ";}
-$result_tasks = mysqli_query($conn, $query);    
-
-    while($row = mysqli_fetch_assoc($result_tasks)) {?>
-<?php $date1 = date('yy/m/d h:i:s');
-       $date2 = $row['retour'];
-       $timestamp1 = strtotime($date1); 
-        $timestamp2 = strtotime($date2);
-        if ($timestamp1 > $timestamp2)
-        {$row['etat']='effectue';
-       }
-      else {
-         $row['etat']='en cours';
-       } ?>
-      
-    <tr>
-    <td><?php echo $row['id']; ?></td>
-    
-    <td><?php echo $row['client']; ?>  </td>
-         
-         <?php
-             $client=$row['client'];
-             
-             include '../client/config.php';
-
-             $sel = "SELECT * FROM user where id = '$client'  ";
-             $rs = $conn->query($sel);
-             while($rws = $rs->fetch_assoc()){
-        ?>
-      <td> <?php echo $rws['nom'].' '  ; echo $rws['prenom']; ?>
-      </td><?php }?>
-
-        <?php
-             $voiture=$row['voiture'];
-
-             include '../client/config.php';
-
-             $sel = "SELECT * FROM voiture where id = '$voiture'  ";
-             $rs = $conn->query($sel);
-             while($rws = $rs->fetch_assoc()){
-        ?>
-      <td>  <?php echo $row['voiture']; ?> <br>
-        <img src="../img/products/<?php echo $rws['pic'];?>" alt=""> 
-        <?php echo $rws['marque']; echo ' '.$rws['modele']; ?>
-      </td> <?php }?>
-      <td ><?php echo $row['depart']; ?></td>
-      <td ><?php echo $row['retour']; ?></td>
-      <td><?php echo $row['livraison']; ?></td>
-      <td><?php echo $row['chauffeur']; ?></td>
-      <td><?php 
-     echo $row['etat'];
-            ?>
-      
-      </td>
-      <td><?php echo $row['prix']; ?></td> 
-      <td><?php echo $row['paiement']; ?></td>
-      <td><?php echo $row['date_achat']; ?></td> 
-    </td>
-     
-    </tr>
-    <?php   }
-        }
-   
-
- elseif (isset($_GET['but8'])) 
-  {   
-   if (empty($_GET['acin'])){
-   
-      $query = "SELECT * FROM commande  where etat='en cours' ORDER BY id asc" ;
-
-   }
-   else {
-   $acin= $_GET['acin'];
-          $query = "SELECT * FROM commande where client=$acin ";}
-$result_tasks = mysqli_query($conn, $query);    
-
-    while($row = mysqli_fetch_assoc($result_tasks)) {?>
-<?php $date1 = date('yy/m/d h:i:s');
-       $date2 = $row['retour'];
-       $timestamp1 = strtotime($date1); 
-        $timestamp2 = strtotime($date2);
-        if ($timestamp1 > $timestamp2)
-        {$row['etat']='effectue';
-       }
-      else {
-         $row['etat']='en cours';
-       } ?>
-      
-    <tr>
-    <td><?php echo $row['id']; ?></td>
-    
-    <td><?php echo $row['client']; ?>  </td>
-         
-         <?php
-             $client=$row['client'];
-             
-             include '../client/config.php';
-
-             $sel = "SELECT * FROM user where id = '$client'  ";
-             $rs = $conn->query($sel);
-             while($rws = $rs->fetch_assoc()){
-        ?>
-      <td> <?php echo $rws['nom'].' '  ; echo $rws['prenom']; ?>
-      </td><?php }?>
-
-        <?php
-             $voiture=$row['voiture'];
-
-             include '../client/config.php';
-
-             $sel = "SELECT * FROM voiture where id = '$voiture'  ";
-             $rs = $conn->query($sel);
-             while($rws = $rs->fetch_assoc()){
-        ?>
-      <td>  <?php echo $row['voiture']; ?> <br>
-        <img src="../img/products/<?php echo $rws['pic'];?>" alt=""> 
-        <?php echo $rws['marque']; echo ' '.$rws['modele']; ?>
-      </td> <?php }?>
-      <td ><?php echo $row['depart']; ?></td>
-      <td ><?php echo $row['retour']; ?></td>
-      <td><?php echo $row['livraison']; ?></td>
-      <td><?php echo $row['chauffeur']; ?></td>
-      <td><?php 
-     echo $row['etat'];
-            ?>
-      
-      </td>
-      <td><?php echo $row['prix']; ?></td> 
-      <td><?php echo $row['paiement']; ?></td>
-      <td><?php echo $row['date_achat']; ?></td> 
-    </td>
-     
-    </tr>
-    <?php   }
-        }
-else{  
-?>
-
-    
-<?php   
-
-$query = "UPDATE `commande` SET `etat`='effectue' WHERE (Datediff(now(),retour)>0) ";
-    $result_tasks = mysqli_query($conn, $query);    
-
-    $query2 = "SELECT * FROM commande where etat='en cours' ORDER BY id desc " ;
-    $result_tasks2 = mysqli_query($conn, $query2); 
-
-    while($row = mysqli_fetch_assoc($result_tasks2)) {?>
-
-      
-    <tr>
-    <td><?php echo $row['id']; ?></td>
-    
-    <td><?php echo $row['client']; ?>  </td>
-         
-         <?php
-             $client=$row['client'];
-             
-             include '../client/config.php';
-
-             $sel = "SELECT * FROM user where id = '$client'  ";
-             $rs = $conn->query($sel);
-             while($rws = $rs->fetch_assoc()){
-        ?>
-      <td> <?php echo $rws['nom'].' '  ; echo $rws['prenom']; ?>
-      </td><?php }?>
-
-        <?php
-             $voiture=$row['voiture'];
-
-             include '../client/config.php';
-
-             $sel = "SELECT * FROM voiture where id = '$voiture'  ";
-             $rs = $conn->query($sel);
-             while($rws = $rs->fetch_assoc()){
-        ?>
-      <td>  <?php echo $row['voiture']; ?> <br>
-        <img src="../img/products/<?php echo $rws['pic'];?>" alt=""> 
-        <?php echo $rws['marque']; echo ' '.$rws['modele']; ?>
-      </td> <?php }?>
-      <td ><?php echo $row['depart']; ?></td>
-      <td ><?php echo $row['retour']; ?></td>
-      <td><?php echo $row['livraison']; ?></td>
-      <td><?php echo $row['chauffeur']; ?></td>
-      <td><?php 
-     echo $row['etat'];
-            ?>
-      
-      </td>
-      <td><?php echo $row['prix']; ?></td> 
-      <td><?php echo $row['paiement']; ?></td>
-      <td><?php echo $row['date_achat']; ?></td> 
-    </td>
-  
-
-    </tr>
-    <?php  }} ?>
-
-<!-- NEWWWWWWWWWWWWWWWWWWWWWWWW-->
-
-        </tbody>
-        </table>
-        <br>
+          <input type="submit" name="facture" class="btn btn-success btn-block" value="Sauvegarder" />
+        </form>
+      </div>
     </div>
-  </div>
-</main>
+   
+      <!-- End of Main Content -->
+ <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID FACTURE</th>
+            <th>ID RESERVATION </th>
+            <th>NOM CLIENT</th>
+            <th>AGENT </th>
+            <th>DATE FACTURATION </th>
+            <th>LIEU FACTURATION </th>
 
+          </tr>
+        </thead>
+        <tbody>
 
+          <?php
+        
+              $query = "SELECT * FROM facture order by id asc";
+          $result_tasks = mysqli_query($conn, $query);    
+
+          while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+          <tr>
+            <td><?php echo $row['id']; ?></td>
+            <td><?php echo $row['id_reservation']; ?></td>
+            <td><?php echo $row['nom_client']; ?></td>
+            <td><?php echo $row['agent']; ?></td>
+            <td><?php echo $row['date_facture']; ?></td>
+            <td><?php echo $row['lieu']; ?></td>
+
+            <td>
+              <a href="edit_facture.php?id=<?php echo $row['id']?>">
+                <i class="fas fa-marker fa-2x text-red-300"></i>
+              </a>
+              <a href="delete_facture.php?id=<?php echo $row['id']?>" >
+                <i class="far fa-trash-alt fa-2x text-green-300"></i>
+              </a>
+               <a href="pdf2.php?reservation=<?php echo $row['id_reservation']?>"  >
+<i class="far fa-file-pdf fa-2x text-green-300"></i>
+
+              </a>
+              
+       
+
+      <!-- End of Main Content -->
+
+      
+
+    
+    
+            </td>
+          </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+</div>
+      
+
+   </main>
       <!-- End of Main Content -->
 
       
@@ -696,22 +535,13 @@ $query = "UPDATE `commande` SET `etat`='effectue' WHERE (Datediff(now(),retour)>
     <script src="js/mixitup.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/jquery.datetimepicker.full.js"></script>
-    <script >
-      
-
-
-        $("#datetime").datetimepicker()
-          
-       
-       
-    </script>
-
-
- <script >
+   <script type="text/javascript" > 
+$('#datetime').datetimepicker({
+    timepicker: false,
+    datepicker: true,
+    minDate: 0,
     
-$("#datetime2").datetimepicker()
-    </script>
-</body>
-
+})
+</script>
 </html>
 <?php include('includes/footer.php'); ?>

@@ -10,7 +10,9 @@ if (isset($_POST['save_voiture'])) {
   $kilometrage= $_POST['kilometrage'];
   $etat= $_POST['etat'];
   $pic= $_POST['pic'];
-  $query = "INSERT INTO voiture(immatriculation, prix, marque, modele, kilometrage, etat, pic) VALUES ('$immatriculation','$prix', '$marque', '$modele', '$kilometrage', '$etat', '$pic')";
+   $prixfixe= $_POST['prixfixe'];
+
+  $query = "INSERT INTO voiture(immatriculation, prix, marque, modele, kilometrage, etat, pic,prixfixe ) VALUES ('$immatriculation','$prix', '$marque', '$modele', '$kilometrage', '$etat', '$pic','$prixfixe')";
   $result = mysqli_query($conn, $query);
   if(!$result) {
     die("Query Failed.");

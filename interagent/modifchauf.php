@@ -81,9 +81,10 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestions:</h6>
-           <a class="collapse-item" href="gestionreservation.php">Consulter les commandes</a>
-            <a class="collapse-item" href="crudchauffeur.php">Gestion des chauffeurs</a>
-            <a class="collapse-item active" href="client.php">Gestion des clients</a>
+            <a class="collapse-item " href="gestionagent.php">Gestion des agents</a>
+            <a class="collapse-item " href="gestionreservation.php">Consulter les commandes</a>
+            <a class="collapse-item active" href="crudchauffeur.php">Gestion des chauffeurs</a>
+            <a class="collapse-item" href="client.php">Gestion des clients</a>
             <a class="collapse-item" href="gestionconge.php">Gestion des congés</a>
             <a class="collapse-item" href="voiture.php">Gestion des voitures</a>
           </div>

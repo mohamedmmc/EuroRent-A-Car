@@ -6,6 +6,8 @@ $marque= '';
 $modele='';
 $kilometrage='';
 $etat='';
+$prixfixe = '';
+
 
 if  (isset($_GET['id'])) {
   $id = $_GET['id'];
@@ -19,6 +21,8 @@ if  (isset($_GET['id'])) {
     $modele= $row['modele'];
     $kilometrage= $row['kilometrage'];
     $etat= $row['etat'];
+        $prixfixe= $row['prixfixe'];
+
   }
 }
 
@@ -30,8 +34,9 @@ if (isset($_POST['update'])) {
   $modele= $_POST['modele'];
   $kilometrage= $_POST['kilometrage'];
   $etat= $_POST['etat'];
+  $prixfixe= $_POST['prixfixe'];
 
-  $query = "UPDATE voiture set immatriculation = '$immatriculation',prix = '$prix', marque = '$marque', modele = '$modele', kilometrage = '$kilometrage', etat = '$etat' WHERE id=$id";
+  $query = "UPDATE voiture set immatriculation = '$immatriculation',prix = '$prix', marque = '$marque', modele = '$modele', kilometrage = '$kilometrage', etat = '$etat',prixfixe = '$prixfixe' WHERE id=$id";
   mysqli_query($conn, $query);
   $_SESSION['message'] = 'mise à jour avec succès';
   $_SESSION['message_type'] = 'warning';
@@ -65,6 +70,9 @@ if (isset($_POST['update'])) {
             <option>disponible</option>
             <option>non disponible</option>
           </select>
+        </div>
+        <div class="form-group">
+          <input name="prixfixe" type="text" class="form-control" value="<?php echo $prixfixe; ?>" placeholder="Update prix">
         </div>
         <button class="btn-success" name="update">
           Update

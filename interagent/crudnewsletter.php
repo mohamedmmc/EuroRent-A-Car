@@ -1,14 +1,37 @@
+<!DOCTYPE html>
+<html lang="zxx">
 
+<head>
+<meta charset="UTF-8">
+    <title>PHP CRUD MYSQL</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- BOOTSTRAP 4 -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <!-- FONT AWESOEM -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
 
-<?php
-include("db.php");
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="js/jquery-ui.css" type="text/css">
+    <link rel="stylesheet" href="js/jquery.datetimepicker.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
 
-?>
+<?php include("db.php"); ?>
 
 <?php include('includes/header.php'); ?>
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><script src="gestionagent.js"></script>
+
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -27,7 +50,7 @@ include("db.php");
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> Agent </div>
+        <div class="sidebar-brand-text mx-3">Agent </div>
       </a>
 
       <!-- Divider -->
@@ -56,15 +79,15 @@ include("db.php");
         </a>
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Gestions:</h6>
+            <h6 class="collapse-header">Gestions:</h6>
              <a class="collapse-item " href="gestionreservation.php">Gestion des commandes</a>
             <a class="collapse-item " href="gestionreservation_effectue.php">Les commandes effectués</a>
-            <a class="collapse-item" href="gestionfacture.php">Gestion des  factures</a>
-            <a class="collapse-item " href="crudnewsletter.php">Consulter les abonnés</a>
+            <a class="collapse-item " href="gestionfacture.php">Gestion des  factures</a>
+            <a class="collapse-item active" href="crudnewsletter.php">Consulter les abonnés</a>
             <a class="collapse-item" href="crudchauffeur.php">Gestion des chauffeurs</a>
             <a class="collapse-item" href="client.php">Gestion des clients</a>
             <a class="collapse-item" href="gestionconge.php">Gestion des congés</a>
-            <a class="collapse-item active" href="voiture.php">Gestion des voitures</a>
+            <a class="collapse-item" href="voiture.php">Gestion des voitures</a>
             <a class="collapse-item" href="gestionpromotion.php">Gestion des promotions </a>
             <a class="collapse-item " href="gestioncoupon.php">Gestion des coupons</a>
           </div>
@@ -155,7 +178,16 @@ include("db.php");
           </button>
 
           <!-- Topbar Search -->
-          
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -181,35 +213,110 @@ include("db.php");
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1" >
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <span class="badge badge-danger badge-counter">1+</span>
-
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">3+</span>
               </a>
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" href="gestionconge.php">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
-Notifications                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="gestionconge.php">
+                  Alerts Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
-
-                      <i class="fas fa-file-alt text-white" ></i>
-
+                      <i class="fas fa-file-alt text-white"></i>
                     </div>
                   </div>
-               
                   <div>
-       
-                    <span class="font-weight-bold">demandes de congé sont disponibles ! </span>
-
-                 
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    Spending Alert: We've noticed unusually high spending for your account.
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              </div>
             </li>
-  
+
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-envelope fa-fw"></i>
+                <!-- Counter - Messages -->
+                <span class="badge badge-danger badge-counter">7</span>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header">
+                  Message Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div class="font-weight-bold">
+                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
+                    <div class="status-indicator"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>
+                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
+                    <div class="status-indicator bg-warning"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>
+                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>
+                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+              </div>
+            </li>
+
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
@@ -249,17 +356,15 @@ Notifications                </h6>
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Gestion des voitures</h1>
-    
-        
-          <center>
+          <h1 class="h3 mb-4 text-gray-800">Les abonnés</h1>
 
+         <center>
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="GET">
           <div class="input-group">
-            <input name="acin" type="text" class="form-control bg-light border-0 small" placeholder="Recherche par immatriculation" aria-label="Search" aria-describedby="basic-addon2"/>
+            <input name="acin" type="text" class="form-control bg-light border-0 small" placeholder="Recherche par mail abonné" aria-label="Search" aria-describedby="basic-addon2"/>
               <div class="input-group-append">
 
-          <button name="but8" class="btn btn-primary"  type="submit">
+<button name="but8" class="btn btn-primary"  type="submit">
                   <i class="fas fa-search fa-sm"></i>
 
                 </button>
@@ -267,139 +372,80 @@ Notifications                </h6>
 
             </div>
           </form>
-        
-
-
 <center/>
-
         <!-- /.container-fluid -->
 
       </div>
-
       <main class="container p-4">
-  <div class="row">
-    <div class="col-md-4">
-      <!-- MESSAGES -->
+ 
 
-      <?php if (isset($_SESSION['message'])) { ?>
-      <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
-        <?= $_SESSION['message']?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <?php session_unset(); } ?>
+      <!-- ADD TASK FORM -->
+      
+<div class="container" center>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID Abonné</th>
+      <th>Email</th>
+      <th>Date de l'abonnement</th>
 
-      <!-- ADD voiture FORM -->
-      <div class="card card-body">
-        <form action="save_voiture.php" method="POST">
-          <div class="form-group">
-            <input type="text" name="immatriculation" class="form-control" placeholder="immatriculation" autofocus>
-          </div>
-          <div class="form-group">
-            <input type="text" name="prix" class="form-control" placeholder="prix" autofocus>
-          </div>
-          <div class="form-group">
-            <input type="text" name="marque" class="form-control" placeholder="marque" autofocus>
-          </div>
-          <div class="form-group">
-            <input type="text" name="modele" class="form-control" placeholder="modele" autofocus>
-          </div>
-          <div class="form-group">
-            <input type="text" name="kilometrage" class="form-control" placeholder="kilometrage" autofocus>
-          </div>
-          <p>etat :</p>
-          <select name="etat" class="form-control" placeholder="etat" >
-            <option>disponible</option>
-            <option>non disponible</option>
-          </select>
-          <br>
-          <div class="form-group">
-            <input type="file" name="pic" class="form-control" placeholder="pic" autofocus>
-          </div>
-          <div class="form-group">
-            <input type="text" name="prixfixe" class="form-control" placeholder="prixfixe" autofocus>
-          </div>
-          <input type="submit" name="save_voiture" class="btn btn-success btn-block" value="Enregistrer la voiture">
-        </form>
-      </div>
-    </div>
-    <div class="col-md-8">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>immatriculation</th>
-            <th>prix</th>
-            <th>marque</th>
-            <th>modele</th>
-            <th>kilometrage</th>
-            <th>etat</th>
-            <th>pic</th>
-            <th>prixfixe</th>
-          </tr>
-        </thead>
-        <tbody>
-           <?php
-          if (isset($_GET['but8'])) 
-          {   
-             if (empty($_GET['acin']))
-             {
-                  $query = "SELECT * FROM voiture order by immatriculation asc";
-              }
-            else
-            {
-                $acin=$_GET['acin'];
-                $query = "SELECT * FROM voiture where immatriculation like '$acin%'";
-            }
-          }
-            else 
-            {
-              $query = "SELECT * FROM voiture order by immatriculation asc";
-            }
-            $result_tasks = mysqli_query($conn, $query);    
-            if (mysqli_num_rows($result_tasks) == 0)
-            {
-                    echo "<script type = \"text/javascript\">
-                    alert(\"Aucune voiture n'est enregistré\");
-                    </script>";
-            } 
-          while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-          <tr>
-            <td><?php echo $row['id']; ?></td>
-            <td><?php echo $row['immatriculation']; ?></td>
-            <td><?php echo $row['prix']; ?></td>
-            <td><?php echo $row['marque']; ?></td>
-            <td><?php echo $row['modele']; ?></td>
-            <td><?php echo $row['kilometrage']; ?></td>
-            <td><?php echo $row['etat']; ?></td>
-            <td><?php echo $row['pic']; ?></td>
-             <td><?php echo $row['prixfixe']; ?></td>
-            <td>
-              <a href="edit.php?id=<?php echo $row['id']?>" class="btn btn-secondary">
-                <i class="fas fa-marker"></i>
-              </a>
-              <a href="delete_voiture.php?id=<?php echo $row['id']?>" class="btn btn-danger">
+      
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php
+  if (isset($_GET['but8'])) 
+  {   
+    if (empty($_GET['acin']))
+    {
+      $query = "SELECT * FROM newsletters ORDER BY id asc" ;
+    }
+    else 
+    {
+      $acin= $_GET['acin'];
+      $query = "SELECT * FROM newsletters where email like '$acin%' ";
+    }
+  }
+  else 
+  {
+    $query = "SELECT * FROM newsletters ORDER BY id asc" ;}
+    $result_tasks = mysqli_query($conn, $query);   
+    if (mysqli_num_rows($result_tasks) == 0)
+    {
+        echo "<script type = \"text/javascript\">
+                     alert(\"Aucun abonnement\");
+                       </script>";
+    } 
+
+    while($row = mysqli_fetch_assoc($result_tasks)) 
+    { ?>
+    <tr>
+    <td><?php echo $row['id']; ?></td>
+      <td><?php echo $row['email']; ?></td>
+      <td><?php echo $row['date']; ?></td>
+                  <td>
+              <a href="suprabo.php?id=<?php echo $row['id']?>" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
               </a>
             </td>
-          </tr>
-          <?php } ?>
-
-          
+      </td>
+    </td>
+     
+    </tr>
+    <?php } ?>
         </tbody>
-      </table>
-
-       <form method="post" action="pdfvoiture.php">  
-<input style="margin-left: auto; margin-right: auto;" type="submit" name="generate_pdf" class="btn btn-success btn-block" value="Générer un PDF" /> 
-  </div>
-</form>
-
+        </table>
+        <br>
     </div>
+    <form style="max-width: 250px; margin-right: auto; margin-left: auto;" method="post" action="newsletter.php">  
+<input type="submit" name="envois_mail" class="btn btn-success btn-block" value="Envois Mail" /> 
   </div>
 </main>
 
+      <!-- End of Main Content -->
 
+      
 
     </div>
     <!-- End of Content Wrapper -->
@@ -432,6 +478,34 @@ Notifications                </h6>
   </div>
   </body>
 
+   <!-- Js Plugins -->
+   <script src="js/jquery-ui.js" type ="text/javascript"></script>
+    <script src="js/jquery.js" type ="text/javascript" ></script>
+    <script src="js/jquery-3.3.1.min.js" type ="text/javascript" ></script>
+    <script src="js/bootstrap.min.js" type ="text/javascript"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/jquery.datetimepicker.full.js"></script>
+    <script >
+      
 
 
+        $("#datetime").datetimepicker()
+          
+       
+       
+    </script>
+
+
+ <script >
+    
+$("#datetime2").datetimepicker()
+    </script>
+</body>
+
+</html>
 <?php include('includes/footer.php'); ?>
